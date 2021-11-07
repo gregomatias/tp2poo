@@ -5,20 +5,24 @@ public class PlanInternet extends Plan {
 
 
 
-    public PlanInternet (String nombreDelPLan,double valorDelPLan){
-        this.nombreDelPLan=nombreDelPLan;
-        this.valorDelPLan=valorDelPLan;
+    public PlanInternet (int idDelPlan,String nombreDelPLan,double valorDelPLan){
+        super(idDelPlan,nombreDelPLan,valorDelPLan);
 
     }
 
     @Override
     public String getNombreDelPLan() {
-        return nombreDelPLan;
+        return  super.nombreDelPlan;
     }
 
     @Override
-    public double getValorDelPLan() {
-        return valorDelPLan;
+    public double getValorDelPlan() {
+        return  super.valorDelPLan;
+    }
+
+    @Override
+    public int getIdDelPlan() {
+        return  super.idDelPlan;
     }
 
 

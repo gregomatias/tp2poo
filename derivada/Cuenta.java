@@ -1,8 +1,9 @@
 package derivada;
 
+import java.util.ArrayList;
+
 public class Cuenta {
-    private String idCuenta;
-    private String domicilio;
     private String usuario;
+
     
 }
