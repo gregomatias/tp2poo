@@ -2,8 +2,11 @@ package derivada;
 
 import java.util.ArrayList;
 
-public class Cuenta {
+import base.Cliente;
+
+public class Cuenta extends Cliente {
     private String usuario;
+
 
     
 }
