@@ -1,12 +1,14 @@
 package dominio;
 
 
+
 public class Cliente {
 
     private int dni;
     private String nombre;
     private String apellido;
     private String tipoContribuyente;
+
 
     public Cliente(int dni, String nombre, String apellido, String tipoContribuyente) {
         this.dni = dni;
@@ -30,6 +32,12 @@ public class Cliente {
     public String getTipoContribuyente() {
         return tipoContribuyente;
     }
+
+
+
+
+    
+    
 
 
 }

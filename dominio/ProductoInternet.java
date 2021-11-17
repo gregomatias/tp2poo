@@ -1,6 +1,8 @@
 package dominio;
 
-public class ProductoInternet {
+import inter.Producto;
+
+public class ProductoInternet implements Producto {
 
     private String fechaDeInstalacion;
     private String fechaDeBaja;
@@ -22,6 +24,15 @@ public class ProductoInternet {
     }
     public int getIdCuentaPropietaria() {
         return idCuentaPropietaria;
+    }
+    public String getFechaDeInstalacion() {
+        return fechaDeInstalacion;
+    }
+    public int getIdProducto() {
+        return idProducto;
+    }
+    public String getFechaDeBaja() {
+        return fechaDeBaja;
     }
 
 }

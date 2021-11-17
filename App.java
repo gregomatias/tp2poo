@@ -24,15 +24,24 @@ public class App {
 
         List<Plan> carritoDeCompras = new ArrayList<Plan>();
 
+        ClienteService clienteService = new ClienteService();
         ProductoInternetService productoInternetService = new ProductoInternetService();
         ProductoMovilService productoMovilService = new ProductoMovilService();
+        ProductoTvService productoTvService = new ProductoTvService();
         CuentaService cuentaService = new CuentaService();
         PlanService planService = new PlanService();
 
         planService.instanciaPlanes();
 
-        Cliente nuevoCliente = new Cliente(26200854, "matias", "grego", "cf");
-        cuentaService.crearCuenta(nuevoCliente.getDni());
+        int dni= 26200854;
+        String domicilio ="Marabotto 384 1A";
+
+        
+        clienteService.creaCliente(26200854, "matias", "grego", "cf");
+
+       cuentaService.creaCuenta(domicilio,dni);
+       
+       
 
         do {
 
@@ -72,13 +81,13 @@ public class App {
 
                         if (plan.getIdDelPlan() == planSeleccionado) {
 
-                            int idLinea= productoMovilService.creaIdLinea();
-                            System.out.println("\nId de línea: "+idLinea);
-                            System.out.println("Fecha de Activación: "+ fechaDeActivacion);
-                            
-                            productoMovilService.creaProductoMovil(idLinea,
-                                    fechaDeActivacion, cuentaService.getCuentas().size(), plan);
-                                    carritoDeCompras.add(plan);
+                            int idLinea = productoMovilService.creaIdLinea();
+                            System.out.println("\nId de línea: " + idLinea);
+                            System.out.println("Fecha de Activación: " + fechaDeActivacion);
+
+                            productoMovilService.creaProductoMovil(idLinea, fechaDeActivacion,
+                            cuentaService.getCuentas().size(), plan);
+                            carritoDeCompras.add(plan);
 
                         }
                     }
@@ -88,7 +97,13 @@ public class App {
                     for (Plan plan : planService.getPlanes()) {
 
                         if (plan.getIdDelPlan() == planSeleccionado) {
+
+                            productoTvService.creaProductoTv(fechaDeInstalacion, fechaDeBaja,
+                            cuentaService.getCuentas().size(), plan);
                             carritoDeCompras.add(plan);
+
+                            System.out.println("\nFecha de Instalación del Producto " + plan.getNombreDelPlan() + ": "
+                            + fechaDeInstalacion);
 
                         }
                     }
@@ -114,9 +129,36 @@ public class App {
 
             System.out.println("El abono mensual facturado sera de:\n");
             System.out.println(montoMensualFacturado);
+
+
+
+
+
             finalizaLaCompra = Integer.parseInt(System.console().readLine(("\nFinalizar la compra 1-Si 0-No ")));
 
         } while (finalizaLaCompra == 0);
+
+        for (Cuenta cuenta : cuentaService.getCuentas()) {
+            if (cuenta.getDniPropietario()==dni)
+               for (ProductoInternet productoInternet : productoInternetService.getProductosDeInternet()) {
+                if(productoInternet.getIdCuentaPropietaria()==cuenta.getIdCuenta()){
+                    System.out.println("Id Producto: "+productoInternet.getIdProducto());
+                    System.out.println(" Fecha Instalacion: "+productoInternet.getFechaDeInstalacion());
+                    System.out.println(" Cuenta Padre: "+productoInternet.getIdCuentaPropietaria());
+                    System.out.println("Plan: "+productoInternet.getPlan().getNombreDelPlan());
+                }
+                   
+               }           
+            
+            
+        }
+
+
+
+
+
+
+
 
     }// Fin Main
 }// Fin Clase APP

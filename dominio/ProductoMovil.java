@@ -1,7 +1,8 @@
 package dominio;
 
+import inter.Producto;
 
-public class ProductoMovil {
+public class ProductoMovil implements Producto{
     private int idLinea;
     private int idProducto;
     private String fechaActivacion;
