@@ -16,4 +16,8 @@ public class ProductoTvService {
 
     }
 
+    public List<ProductoTv> getProductosTv() {
+        return productosTv;
+    }
+
 }

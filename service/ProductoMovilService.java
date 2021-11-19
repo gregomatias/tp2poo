@@ -27,5 +27,8 @@ public class ProductoMovilService {
         return max;
 
     }
+    public List<ProductoMovil> getProductosMovil() {
+        return productosMovil;
+    }
 
 }

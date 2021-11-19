@@ -33,15 +33,29 @@ public class App {
 
         planService.instanciaPlanes();
 
-        int dni= 26200854;
-        String domicilio ="Marabotto 384 1A";
+        int dni = 26200854;
+        String domicilio = "Marabotto 384 1A";
 
-        
         clienteService.creaCliente(26200854, "matias", "grego", "cf");
 
-       cuentaService.creaCuenta(domicilio,dni);
-       
-       
+        cuentaService.creaCuenta(domicilio, dni);
+        int esClienteNuevo = 1;
+
+
+
+        switch (esClienteNuevo) {
+            case 1:
+                
+                break;
+
+                case 2:
+                
+                break;
+        
+            default:
+            System.out.println("Dato incorrecto");
+                break;
+        }
 
         do {
 
@@ -66,9 +80,6 @@ public class App {
 
                         if (plan.getIdDelPlan() == planSeleccionado) {
 
-                            System.out.println("\nFecha de Instalación del Producto " + plan.getNombreDelPlan() + ": "
-                                    + fechaDeInstalacion);
-
                             productoInternetService.creaProductointernet(fechaDeInstalacion, fechaDeBaja,
                                     cuentaService.getCuentas().size(), plan);
                             carritoDeCompras.add(plan);
@@ -82,11 +93,8 @@ public class App {
                         if (plan.getIdDelPlan() == planSeleccionado) {
 
                             int idLinea = productoMovilService.creaIdLinea();
-                            System.out.println("\nId de línea: " + idLinea);
-                            System.out.println("Fecha de Activación: " + fechaDeActivacion);
-
                             productoMovilService.creaProductoMovil(idLinea, fechaDeActivacion,
-                            cuentaService.getCuentas().size(), plan);
+                                    cuentaService.getCuentas().size(), plan);
                             carritoDeCompras.add(plan);
 
                         }
@@ -99,11 +107,10 @@ public class App {
                         if (plan.getIdDelPlan() == planSeleccionado) {
 
                             productoTvService.creaProductoTv(fechaDeInstalacion, fechaDeBaja,
-                            cuentaService.getCuentas().size(), plan);
+                                    cuentaService.getCuentas().size(), plan);
                             carritoDeCompras.add(plan);
 
-                            System.out.println("\nFecha de Instalación del Producto " + plan.getNombreDelPlan() + ": "
-                            + fechaDeInstalacion);
+
 
                         }
                     }
@@ -130,35 +137,52 @@ public class App {
             System.out.println("El abono mensual facturado sera de:\n");
             System.out.println(montoMensualFacturado);
 
-
-
-
-
             finalizaLaCompra = Integer.parseInt(System.console().readLine(("\nFinalizar la compra 1-Si 0-No ")));
 
         } while (finalizaLaCompra == 0);
 
         for (Cuenta cuenta : cuentaService.getCuentas()) {
-            if (cuenta.getDniPropietario()==dni)
-               for (ProductoInternet productoInternet : productoInternetService.getProductosDeInternet()) {
-                if(productoInternet.getIdCuentaPropietaria()==cuenta.getIdCuenta()){
-                    System.out.println("Id Producto: "+productoInternet.getIdProducto());
-                    System.out.println(" Fecha Instalacion: "+productoInternet.getFechaDeInstalacion());
-                    System.out.println(" Cuenta Padre: "+productoInternet.getIdCuentaPropietaria());
-                    System.out.println("Plan: "+productoInternet.getPlan().getNombreDelPlan());
+            if (cuenta.getDniPropietario() == dni)
+                for (ProductoInternet productoInternet : productoInternetService.getProductosDeInternet()) {
+                    if (productoInternet.getIdCuentaPropietaria() == cuenta.getIdCuenta()) {
+                        System.out.println("Id Producto: " + productoInternet.getIdProducto());
+                        System.out.println(" Fecha Instalacion: " + productoInternet.getFechaDeInstalacion());
+                        System.out.println(" Cuenta Padre: " + productoInternet.getIdCuentaPropietaria());
+                        System.out.println("Plan: " + productoInternet.getPlan().getNombreDelPlan());
+                    }
+
                 }
-                   
-               }           
-            
-            
+
         }
 
+        for (Cuenta cuenta : cuentaService.getCuentas()) {
+            if (cuenta.getDniPropietario() == dni)
+                for (ProductoTv productoTv : productoTvService.getProductosTv()) {
+                    if (productoTv.getIdCuentaPropietaria() == cuenta.getIdCuenta()) {
+                        System.out.println("Id Producto: " + productoTv.getIdProducto());
+                        System.out.println(" Fecha Instalacion: " + productoTv.getFechaDeInstalacion());
+                        System.out.println(" Cuenta Padre: " + productoTv.getIdCuentaPropietaria());
+                        System.out.println("Plan: " + productoTv.getPlan().getNombreDelPlan());
+                    }
 
+                }
 
+        }
 
+        for (Cuenta cuenta : cuentaService.getCuentas()) {
+            if (cuenta.getDniPropietario() == dni)
+                for (ProductoMovil productoMovil : productoMovilService.getProductosMovil()) {
+                    if (productoMovil.getIdCuentaPropietaria() == cuenta.getIdCuenta()) {
+                        System.out.println("Id Producto: " + productoMovil.getIdProducto());
+                        System.out.println("Id Linea: " + productoMovil.getIdLinea());
+                        System.out.println(" Fecha Activacion: " + productoMovil.getFechaActivacion());
+                        System.out.println(" Cuenta Padre: " + productoMovil.getIdCuentaPropietaria());
+                        System.out.println("Plan: " + productoMovil.getPlan().getNombreDelPlan());
+                    }
 
+                }
 
-
+        }
 
     }// Fin Main
 }// Fin Clase APP

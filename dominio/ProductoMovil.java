@@ -20,6 +20,18 @@ public class ProductoMovil implements Producto{
     public int getIdLinea() {
         return idLinea;
     }
+    public String getFechaActivacion() {
+        return fechaActivacion;
+    }
+    public int getIdCuentaPropietaria() {
+        return idCuentaPropietaria;
+    }
+    public int getIdProducto() {
+        return idProducto;
+    }
+    public Plan getPlan() {
+        return plan;
+    }
 
 }
 

@@ -18,6 +18,21 @@ public class ProductoTv implements Producto {
 
 
     }
+    public String getFechaDeInstalacion() {
+        return fechaDeInstalacion;
+    }
+    public String getFechaDebaja() {
+        return fechaDebaja;
+    }
+    public int getIdCuentaPropietaria() {
+        return idCuentaPropietaria;
+    }
+    public int getIdProducto() {
+        return idProducto;
+    }
+    public Plan getPlan() {
+        return plan;
+    }
 
     
 
