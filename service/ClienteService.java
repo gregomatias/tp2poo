@@ -10,9 +10,35 @@ public class ClienteService {
 
     private List<Cliente> clientes = new ArrayList<Cliente>();
 
-    public void creaCliente(int dni, String nombre, String apellido, String tipoContribuyente) {
-        clientes.add(new Cliente(dni, nombre, apellido, tipoContribuyente));
+    public void creaCliente(Cliente clienteNuevo) {
+        clientes.add(clienteNuevo);
     }
+
+    public   Cliente getCliente(int dni){
+
+        return clientes.stream().filter((c)-> c.getDni()==dni).findFirst().get();
+        
+/*         for (Cliente cliente : clientes) {
+
+            if(cliente.getDni()==dni){
+                cliente
+            } else {
+                return ;
+            }
+ */
+
+            
+        }
+
+        
+        public int creaIdLinea() {
+            int max = 1123226456;
+
+           int nuevaLinea= max + clientes.size();
+           
+            return nuevaLinea;
+    
+        }
 
 
 

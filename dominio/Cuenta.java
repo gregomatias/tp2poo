@@ -1,27 +1,41 @@
 package dominio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cuenta {
 
-    private int idCuenta;
     private String domicilio;
-    private int dniPropietario;
+    private List<ProductoInternet> productosInternet = new ArrayList<ProductoInternet>();
+    private List<ProductoMovil> productosMovil = new ArrayList<ProductoMovil>();
+    private List<ProductoTv> productosTv = new ArrayList<ProductoTv>();
+    
 
-    public Cuenta(int idCuenta, String domicilio,int dniPropietario) {
-        this.idCuenta = idCuenta;
+    public Cuenta(String domicilio) {
+
         this.domicilio = domicilio;
-        this.dniPropietario=dniPropietario;
-    }
-
-    public int getIdCuenta() {
-        return idCuenta;
     }
 
     public String getDomicilio() {
         return domicilio;
     }
-
-    public int getDniPropietario() {
-        return dniPropietario;
+    public List<ProductoInternet> getProductosInternet() {
+        return productosInternet;
+    }
+    public List<ProductoMovil> getProductosMovil() {
+        return productosMovil;
+    }
+    public List<ProductoTv> getProductosTv() {
+        return productosTv;
+    }
+    public void setProductosInternet(ProductoInternet productoInternet) {
+        this.productosInternet.add(productoInternet);
+    }
+    public void setProductosMovil(ProductoMovil productoMovil) {
+        this.productosMovil.add(productoMovil);
+    }
+    public void setProductosTv(ProductoTv productoTv) {
+        this.productosTv.add(productoTv);
     }
 
 }
