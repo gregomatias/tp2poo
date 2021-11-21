@@ -25,7 +25,7 @@ public class App {
         List<Plan> carritoDeCompras = new ArrayList<Plan>();
 
         ClienteService clienteService = new ClienteService();
-  
+
         PlanService planService = new PlanService();
 
         planService.instanciaPlanes();
@@ -35,12 +35,13 @@ public class App {
 
         Cuenta cuentaNueva = new Cuenta(domicilio);
         Cliente cliente = new Cliente(26200854, "matias", "grego", "cf", cuentaNueva);
+        clienteService.creaCliente(cliente);
 
-       // int esClienteNuevo = 1;
+        // int esClienteNuevo = 1;
 
-
-
-        do {
+        finalizaLaCompra = Integer.parseInt(System.console().readLine(("Cliente Nuevo: 1 Cliente Existente: 0")));
+        
+        while (finalizaLaCompra == 1) {
 
             do {// Do de Seleccion familia de productos y PLanes vigentes
 
@@ -119,30 +120,37 @@ public class App {
             System.out.println("El abono mensual facturado sera de:\n");
             System.out.println(montoMensualFacturado);
 
-            finalizaLaCompra = Integer.parseInt(System.console().readLine(("\nFinalizar la compra 1-Si 0-No ")));
+            
 
-        } while (finalizaLaCompra == 0);
+        };//While principal
 
         // Aqui iria el dni de busqueda de cliente activo JOPTIONPANE
         clienteService.getCliente(dni);
 
         for (Cuenta cuenta : clienteService.getCliente(dni).getCuentas()) {
+            System.out.println("\nDomicilio de Facturacion:\n" + cuenta.getDomicilio());
             for (ProductoInternet productoInternet : cuenta.getProductosInternet()) {
+                System.out.println("############Productos de internet############\n");
+                System.out.println("Fecha Instalacion|Pan Adquirido|Fecha de Baja");
 
-                System.out.println(productoInternet.getFechaDeInstalacion() + "|" + productoInternet.getPlan() + "|"
-                        + productoInternet.getFechaDeBaja());
+                System.out.println("   " + productoInternet.getFechaDeInstalacion() + "    |"
+                        + productoInternet.getPlan().getNombreDelPlan() + "|" + productoInternet.getFechaDeBaja());
 
             }
             for (ProductoMovil productoMovil : cuenta.getProductosMovil()) {
+                System.out.println("\n############Productos Movil############\n");
+                System.out.println("Fecha Activacion|Pan Adquirido|ID Linea");
 
-                System.out.println(productoMovil.getFechaActivacion() + "|" + productoMovil.getPlan() + "|"
-                        + productoMovil.getIdLinea());
+                System.out.println("   " + productoMovil.getFechaActivacion() + "    |"
+                        + productoMovil.getPlan().getNombreDelPlan() + "|" + productoMovil.getIdLinea());
 
             }
             for (ProductoTv productoTv : cuenta.getProductosTv()) {
+                System.out.println("\n############Productos Tv############\n");
+                System.out.println("Fecha Instalacion|Pan Adquirido|Fecha de baja");
 
-                System.out.println(productoTv.getFechaDeInstalacion() + "|" + productoTv.getPlan() + "|"
-                        + productoTv.getFechaDebaja());
+                System.out.println("   " + productoTv.getFechaDeInstalacion() + "    |"
+                        + productoTv.getPlan().getNombreDelPlan() + "|" + productoTv.getFechaDebaja());
 
             }
         }
