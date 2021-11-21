@@ -14,21 +14,9 @@ public class ClienteService {
         clientes.add(clienteNuevo);
     }
 
-    public   Cliente getCliente(int dni){
-
-        return clientes.stream().filter((c)-> c.getDni()==dni).findFirst().get();
-        
-/*         for (Cliente cliente : clientes) {
-
-            if(cliente.getDni()==dni){
-                cliente
-            } else {
-                return ;
-            }
- */
-
-            
-        }
+public List<Cliente> getClientes() {
+    return clientes;
+}
 
         
         public int creaIdLinea() {
