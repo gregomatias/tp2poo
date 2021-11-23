@@ -32,12 +32,12 @@ public class Parametrizacion {
 
     public void instanciaPromociones() {
 
-        promociones.add(new Promocion(5001, "Fiber 12 meses 10% Descuento", -0.10, 1));
-        promociones.add(new Promocion(5002, "Fiber 6 meses 20% Descuento", -0.20, 1));
-        promociones.add(new Promocion(6001, "Movil 12 meses 15% Descuento", -0.15, 2));
-        promociones.add(new Promocion(6002, "Movil 6 meses 30% Descuento", -0.30, 2));
-        promociones.add(new Promocion(7001, "Flow 1 mes sin Cargo", -100, 3));
-        promociones.add(new Promocion(7002, "Flow 2 meses 50% Desc", -0.50, 3));
+        promociones.add(new Promocion(5001, "Fiber 12 meses 10% Descuento", 0.90, 1));
+        promociones.add(new Promocion(5002, "Fiber 6 meses 20% Descuento", 0.80, 1));
+        promociones.add(new Promocion(6001, "Movil 12 meses 15% Descuento", 0.85, 2));
+        promociones.add(new Promocion(6002, "Movil 6 meses 30% Descuento", 0.70, 2));
+        promociones.add(new Promocion(7001, "Flow 1 mes sin Cargo", 0, 3));
+        promociones.add(new Promocion(7002, "Flow 2 meses 50% Desc", 0.50, 3));
 
     }
 

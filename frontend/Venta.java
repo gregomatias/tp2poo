@@ -1,8 +1,6 @@
 
 package frontend;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,7 +11,6 @@ public class Venta {
     public void altaDeCliente(ClienteService clienteService, int dni) {
 
         int finDelCarro = 0;
-        double montoMensualFacturado = 0;
 
         LocalDate fecha = LocalDate.now().plusDays(10);
         LocalDate fecha2 = LocalDate.now().plusDays(1);
@@ -36,11 +33,8 @@ public class Venta {
         Cliente cliente = new Cliente(dni, "matias", "grego", "cf", cuentaNueva);
         clienteService.creaCliente(cliente);
 
-        List<Plan> carritoDeCompras = new ArrayList<Plan>();
-
         do {// Do de Seleccion familia de productos y PLanes vigentes
 
-            System.out.println("#Carrito de compras#\n");
             System.out.println("Seleccione la familia de productos:\n");
 
             int familiaDeProducto = Integer.parseInt(System.console().readLine(("1-Internet 2-Movil 3-TV: ")));
@@ -70,8 +64,6 @@ public class Venta {
                         productoInternet.setPlan(plan);
                         cuentaNueva.setProductosInternet(productoInternet);
 
-                        carritoDeCompras.add(plan);
-
                     }
                 }
                 for (Promocion promocion : parametrizacion.getPromociones()) {
@@ -88,13 +80,12 @@ public class Venta {
 
                 int idLinea = clienteService.creaIdLinea();
                 ProductoMovil productoMovil = new ProductoMovil(idLinea, fechaDeActivacion);
+                cuentaNueva.setProductosMovil(productoMovil);
                 for (Plan plan : parametrizacion.getPlanes()) {
 
-                    cuentaNueva.setProductosMovil(productoMovil);
                     if (plan.getIdDelPlan() == planSeleccionado) {
 
                         productoMovil.setPlan(plan);
-                        carritoDeCompras.add(plan);
 
                     }
                 }
@@ -116,7 +107,6 @@ public class Venta {
                     if (plan.getIdDelPlan() == planSeleccionado) {
 
                         productoTv.setPlan(plan);
-                        carritoDeCompras.add(plan);
 
                     }
                 }
@@ -140,16 +130,35 @@ public class Venta {
 
         } while (finDelCarro == 0);
 
-        System.out.println("Los planes elegidos son:");
+        System.out.println("Planes de INTERNET:");
 
-        for (Plan plan : carritoDeCompras) {
-            System.out.println(plan.getIdDelPlan() + " " + plan.getNombreDelPlan() + " " + plan.getValorDelPLan());
-            montoMensualFacturado = montoMensualFacturado + plan.getValorDelPLan();
-
+        for (ProductoInternet productoInternet : cuentaNueva.getProductosInternet()) {
+            System.out.println(
+                    productoInternet.getPlan().getIdDelPlan() + " " + productoInternet.getPlan().getNombreDelPlan()
+                            + " $" + productoInternet.getPlan().getValorDelPLan());
+            System.out.println("Promocion: " + productoInternet.getPromocion().getNombrePromocion());
+            System.out.println("Valor con descuento: $" + productoInternet.getPlan().getValorDelPLan()
+                    * productoInternet.getPromocion().getPorcentajeDescuento() + "\n");
+        }
+        System.out.println("Planes MOVIL:");
+        for (ProductoMovil productomovil : cuentaNueva.getProductosMovil()) {
+            System.out.println(productomovil.getPlan().getIdDelPlan() + " " + productomovil.getPlan().getNombreDelPlan()
+                    + " $" + productomovil.getPlan().getValorDelPLan());
+            System.out.println("Promocion: " + productomovil.getPromocion().getNombrePromocion());
+            System.out.println("Valor con descuento: $"
+                    + productomovil.getPlan().getValorDelPLan() * productomovil.getPromocion().getPorcentajeDescuento()
+                    + "\n");
+        }
+        System.out.println("Planes TV POR CABLE:");
+        for (ProductoTv productoTv : cuentaNueva.getProductosTv()) {
+            System.out.println(productoTv.getPlan().getIdDelPlan() + " " + productoTv.getPlan().getNombreDelPlan()
+                    + " $" + productoTv.getPlan().getValorDelPLan());
+            System.out.println("Promocion: " + productoTv.getPromocion().getNombrePromocion());
+            System.out.println("Valor con descuento: $"
+                    + productoTv.getPlan().getValorDelPLan() * productoTv.getPromocion().getPorcentajeDescuento()
+                    + "\n");
         }
 
-        System.out.println("El abono mensual facturado sera de:\n");
-        System.out.println(montoMensualFacturado);
-    }
+    }// metodo
 
 }

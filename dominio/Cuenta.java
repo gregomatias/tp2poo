@@ -31,21 +31,6 @@ public class Cuenta {
         return productosTv;
     }
 
-    public ProductoInternet recuperaProductoInternetActual(ProductoInternet productoInternet) {
-        return productoInternet;
-
-    }
-
-    public ProductoMovil recuperaProductoMovilActual(ProductoMovil productoMovil) {
-        return productoMovil;
-
-    }
-
-    public ProductoTv recuperaProductoTvActual(ProductoTv productoTv) {
-        return productoTv;
-
-    }
-
     public void setProductosInternet(ProductoInternet productoInternet) {
         this.productosInternet.add(productoInternet);
     }

@@ -11,8 +11,7 @@ public class Cliente {
     private String tipoContribuyente;
     private List<Cuenta> cuentas = new ArrayList<Cuenta>();
 
-
-    public Cliente(int dni, String nombre, String apellido, String tipoContribuyente,Cuenta cuenta) {
+    public Cliente(int dni, String nombre, String apellido, String tipoContribuyente, Cuenta cuenta) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -36,18 +35,9 @@ public class Cliente {
     public String getTipoContribuyente() {
         return tipoContribuyente;
     }
+
     public List<Cuenta> getCuentas() {
         return cuentas;
     }
-    public Cuenta getCuenta(Cuenta cuenta) {
-        return cuenta;
-    }
-
-
-
-
-    
-    
-
 
 }
