@@ -12,10 +12,12 @@ public class Parametrizacion {
     private List<Promocion> promociones;
 
     public Parametrizacion() {
+
         planes = new ArrayList<Plan>();
         promociones = new ArrayList<Promocion>();
 
     }
+
 
     public void instanciaPlanes() {
 

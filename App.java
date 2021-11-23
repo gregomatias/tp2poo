@@ -1,16 +1,42 @@
 import java.util.Scanner;
-
 import frontend.AtencionAlCliente;
 import frontend.Venta;
 import service.ClienteService;
+import service.UsuarioService;
 
 public class App {
     public static void main(String[] args) {
+        String nombreUsuario = "";
+        int claveUsuario = 0;
+        int elUsuarioEstaLogueado = 1;
+        int cuentaIntentosDeLogueo = 0;
         Venta venta = new Venta();
         AtencionAlCliente atencionaAlCliente = new AtencionAlCliente();
         ClienteService clienteService = new ClienteService();
         Scanner scanner = new Scanner(System.in);
-        int elUsuarioEstaLogueado = 0;
+        UsuarioService usuarioService = new UsuarioService();
+        usuarioService.instanciaUsuarios();
+
+        do {
+
+            System.out.println("Ingrese el nombre de Usuario:");
+            nombreUsuario = scanner.next();
+            System.out.println("Ingrese la clave:");
+            claveUsuario = scanner.nextInt();
+
+            if (usuarioService.validaUsuario(nombreUsuario, claveUsuario)) {
+                System.out.println("Bienvenido " + nombreUsuario);
+                elUsuarioEstaLogueado = 0;
+
+            } else {
+                System.out.println("Datos incorrectos\n");
+                cuentaIntentosDeLogueo = cuentaIntentosDeLogueo + 1;
+                if (cuentaIntentosDeLogueo > 2) {
+                    System.out.println("Excedió el número de intentos, contacte a un administrador");
+                }
+            }
+
+        } while (elUsuarioEstaLogueado != 0 && cuentaIntentosDeLogueo<3);
 
         while (elUsuarioEstaLogueado == 0) {
 
