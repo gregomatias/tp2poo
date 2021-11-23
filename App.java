@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 import frontend.AtencionAlCliente;
 import frontend.Venta;
 import service.ClienteService;
@@ -7,24 +9,24 @@ public class App {
         Venta venta = new Venta();
         AtencionAlCliente atencionaAlCliente = new AtencionAlCliente();
         ClienteService clienteService = new ClienteService();
+        Scanner scanner = new Scanner(System.in);
+        int elUsuarioEstaLogueado = 0;
 
-        int esClienteNuevo = Integer
-                .parseInt(System.console().readLine(("Cliente Nuevo: 1 Cliente Existente: 0\n")));
+        while (elUsuarioEstaLogueado == 0) {
 
+            int dni = Integer.parseInt(System.console().readLine(("Ingrese el Dni del cliente:\n")));
 
+            if (clienteService.getClientes().stream().filter((c) -> c.getDni() == dni).findFirst().isEmpty()) {
 
- 
-            if (esClienteNuevo==1) {
-                venta.altaDeCliente(clienteService);
-            } else{
+                venta.altaDeCliente(clienteService, dni);
 
-                atencionaAlCliente.atiendeCliente(clienteService);
+            } else {
+                atencionaAlCliente.atiendeCliente(clienteService, dni);
             }
-            
+            System.out.println("Desea desloguear? Sí:1 No:0");
+            elUsuarioEstaLogueado = scanner.nextInt();
 
-
-            
-        
+        }
 
     }
 }

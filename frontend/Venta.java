@@ -10,10 +10,9 @@ import dominio.*;
 import service.*;
 
 public class Venta {
-    public  void altaDeCliente(ClienteService clienteService) {	
+    public void altaDeCliente(ClienteService clienteService, int dni) {
 
         int finDelCarro = 0;
-        int finalizaLaCompra = 0;
         double montoMensualFacturado = 0;
 
         LocalDate fecha = LocalDate.now().plusDays(10);
@@ -24,12 +23,13 @@ public class Venta {
         String fechaDeActivacion = fecha2.format(formatter);
         String fechaDeBaja = fechaMax.format(formatter);
 
+        Parametrizacion parametrizacion = new Parametrizacion();
 
-        PlanService planService = new PlanService();
+        parametrizacion.instanciaPlanes();
+        parametrizacion.instanciaPromociones();
 
-        planService.instanciaPlanes();
+        System.out.println("CARRITO DE COMPRAS");
 
-        int dni = 26200854;
         String domicilio = "Marabotto 384 1A";
 
         Cuenta cuentaNueva = new Cuenta(domicilio);
@@ -45,50 +45,86 @@ public class Venta {
 
             int familiaDeProducto = Integer.parseInt(System.console().readLine(("1-Internet 2-Movil 3-TV: ")));
 
-            System.out.println("Planes Disponibles:\n");
+            System.out.println("\nPlanes Disponibles:\n");
 
-            planService.getPlanes().stream().filter((a) -> a.getFamiliaDeProducto() == familiaDeProducto)
+            parametrizacion.getPlanes().stream().filter((a) -> a.getFamiliaDeProducto() == familiaDeProducto)
                     .forEach((a) -> System.out
                             .println(a.getIdDelPlan() + "-" + a.getNombreDelPlan() + "-" + a.getValorDelPLan()));
 
             int planSeleccionado = Integer.parseInt(System.console().readLine(("\nElija el Plan: ")));
 
+            System.out.println("\nPromociones Vigentes:\n");
+
+            parametrizacion.getPromociones().stream().filter((a) -> a.getFamiliaDeProducto() == familiaDeProducto)
+                    .forEach((a) -> System.out.println(a.getIdPromocion() + "-" + a.getNombrePromocion()));
+
+            int promocionSeleccionada = Integer.parseInt(System.console().readLine(("\nElija la Promocion: ")));
+
             switch (familiaDeProducto) {
             case 1:
-                for (Plan plan : planService.getPlanes()) {
+                ProductoInternet productoInternet = new ProductoInternet(fechaDeInstalacion, fechaDeBaja);
 
+                for (Plan plan : parametrizacion.getPlanes()) {
                     if (plan.getIdDelPlan() == planSeleccionado) {
-                        ProductoInternet productoInternet = new ProductoInternet(fechaDeInstalacion, fechaDeBaja,
-                                plan);
-                        cliente.getCuenta(cuentaNueva).setProductosInternet(productoInternet);
+
+                        productoInternet.setPlan(plan);
+                        cuentaNueva.setProductosInternet(productoInternet);
 
                         carritoDeCompras.add(plan);
 
                     }
                 }
+                for (Promocion promocion : parametrizacion.getPromociones()) {
+
+                    if (promocion.getIdPromocion() == promocionSeleccionada) {
+
+                        productoInternet.setPromocion(promocion);
+
+                    }
+                }
+
                 break;
             case 2:
-                for (Plan plan : planService.getPlanes()) {
 
+                int idLinea = clienteService.creaIdLinea();
+                ProductoMovil productoMovil = new ProductoMovil(idLinea, fechaDeActivacion);
+                for (Plan plan : parametrizacion.getPlanes()) {
+
+                    cuentaNueva.setProductosMovil(productoMovil);
                     if (plan.getIdDelPlan() == planSeleccionado) {
 
-                        int idLinea = clienteService.creaIdLinea();
-
-                        ProductoMovil productoMovil = new ProductoMovil(idLinea, fechaDeActivacion, plan);
-                        cliente.getCuenta(cuentaNueva).setProductosMovil(productoMovil);
+                        productoMovil.setPlan(plan);
                         carritoDeCompras.add(plan);
+
+                    }
+                }
+                for (Promocion promocion : parametrizacion.getPromociones()) {
+
+                    if (promocion.getIdPromocion() == promocionSeleccionada) {
+
+                        productoMovil.setPromocion(promocion);
 
                     }
                 }
                 break;
 
             case 3:
-                for (Plan plan : planService.getPlanes()) {
+                ProductoTv productoTv = new ProductoTv(fechaDeInstalacion, fechaDeBaja);
+                cuentaNueva.setProductosTv(productoTv);
+                for (Plan plan : parametrizacion.getPlanes()) {
 
                     if (plan.getIdDelPlan() == planSeleccionado) {
-                        ProductoTv productoTv = new ProductoTv(fechaDeInstalacion, fechaDeBaja, plan);
-                        cliente.getCuenta(cuentaNueva).setProductosTv(productoTv);
+
+                        productoTv.setPlan(plan);
                         carritoDeCompras.add(plan);
+
+                    }
+                }
+                for (Promocion promocion : parametrizacion.getPromociones()) {
+
+                    if (promocion.getIdPromocion() == promocionSeleccionada) {
+
+                        productoTv.setPromocion(promocion);
 
                     }
                 }
@@ -114,6 +150,6 @@ public class Venta {
 
         System.out.println("El abono mensual facturado sera de:\n");
         System.out.println(montoMensualFacturado);
-	}
+    }
 
 }

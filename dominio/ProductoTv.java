@@ -1,16 +1,14 @@
 package dominio;
 
-
-
-public class ProductoTv  {
+public class ProductoTv {
     private String fechaDeInstalacion;
     private String fechaDebaja;
     private Plan plan;
+    private Promocion promocion;
 
-    public ProductoTv(String fechaDeInstalacion, String fechaDeBaja, Plan plan) {
+    public ProductoTv(String fechaDeInstalacion, String fechaDeBaja) {
         this.fechaDeInstalacion = fechaDeInstalacion;
         this.fechaDebaja = fechaDeBaja;
-        this.plan = plan;
 
     }
 
@@ -24,6 +22,18 @@ public class ProductoTv  {
 
     public Plan getPlan() {
         return plan;
+    }
+
+    public Promocion getPromocion() {
+        return promocion;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public void setPromocion(Promocion promocion) {
+        this.promocion = promocion;
     }
 
 }
