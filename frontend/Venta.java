@@ -27,10 +27,15 @@ public class Venta {
 
         System.out.println("CARRITO DE COMPRAS");
 
-        String domicilio = "Marabotto 384 1A";
+        String domicilio = System.console().readLine(("Ingresar Domicilio de instalacion: "));
+        // String domicilio = "Marabotto 384 1A";
 
         Cuenta cuentaNueva = new Cuenta(domicilio);
-        Cliente cliente = new Cliente(dni, "matias", "grego", "cf", cuentaNueva);
+
+        String nombreDelTitular = System.console().readLine(("Ingresar Nombre del Titular: "));
+        String apellidoDelTitular = System.console().readLine(("Ingresar Apellido del titular: "));
+
+        Cliente cliente = new Cliente(dni, nombreDelTitular, apellidoDelTitular, cuentaNueva);
         clienteService.creaCliente(cliente);
 
         do {// Do de Seleccion familia de productos y PLanes vigentes
@@ -52,7 +57,7 @@ public class Venta {
             parametrizacion.getPromociones().stream().filter((a) -> a.getFamiliaDeProducto() == familiaDeProducto)
                     .forEach((a) -> System.out.println(a.getIdPromocion() + "-" + a.getNombrePromocion()));
 
-            int promocionSeleccionada = Integer.parseInt(System.console().readLine(("\nElija la Promocion: ")));
+            int promocionSeleccionada = Integer.parseInt(System.console().readLine(("\nElija la Promoción: ")));
 
             switch (familiaDeProducto) {
             case 1:
@@ -126,7 +131,7 @@ public class Venta {
             }
 
             finDelCarro = Integer
-                    .parseInt(System.console().readLine(("\n¿Finalizó la compra? 1-Sì 0-Seguir Comprando\n")));
+                    .parseInt(System.console().readLine(("\n¿Finalizó la compra? Sí: 1 Seguir Comprando: 0\n")));
 
         } while (finDelCarro == 0);
 

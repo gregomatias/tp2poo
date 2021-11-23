@@ -10,7 +10,7 @@ import service.ClienteService;
 public class AtencionAlCliente {
 
     public void atiendeCliente(ClienteService clienteService, int dni) {
-        Cliente cliente = new Cliente(0, null, null, null, null);
+        Cliente cliente = new Cliente(0, null, null, null);
 
         // int dni = 26200854;
         if (clienteService.getClientes().stream().filter((c) -> c.getDni() == dni).findFirst().isEmpty()) {
