@@ -25,15 +25,13 @@ public class Venta {
         parametrizacion.instanciaPlanes();
         parametrizacion.instanciaPromociones();
 
-        System.out.println("CARRITO DE COMPRAS");
-
-        String domicilio = System.console().readLine(("Ingresar Domicilio de instalacion: "));
-        // String domicilio = "Marabotto 384 1A";
-
-        Cuenta cuentaNueva = new Cuenta(domicilio);
+        System.out.println("######Cliente Nuevo: CARRITO DE COMPRAS#####");
 
         String nombreDelTitular = System.console().readLine(("Ingresar Nombre del Titular: "));
         String apellidoDelTitular = System.console().readLine(("Ingresar Apellido del titular: "));
+        String domicilio = System.console().readLine(("Ingresar Domicilio de instalacion: "));
+
+        Cuenta cuentaNueva = new Cuenta(domicilio);
 
         Cliente cliente = new Cliente(dni, nombreDelTitular, apellidoDelTitular, cuentaNueva);
         clienteService.creaCliente(cliente);
@@ -135,35 +133,42 @@ public class Venta {
 
         } while (finDelCarro == 0);
 
-        System.out.println("Planes de INTERNET:");
+        System.out.println("\nFin del Carro. Productos comprados:\n");
 
-        for (ProductoInternet productoInternet : cuentaNueva.getProductosInternet()) {
-            System.out.println(
-                    productoInternet.getPlan().getIdDelPlan() + " " + productoInternet.getPlan().getNombreDelPlan()
-                            + " $" + productoInternet.getPlan().getValorDelPLan());
-            System.out.println("Promocion: " + productoInternet.getPromocion().getNombrePromocion());
-            System.out.println("Valor con descuento: $" + productoInternet.getPlan().getValorDelPLan()
-                    * productoInternet.getPromocion().getPorcentajeDescuento() + "\n");
+        if (!cuentaNueva.getProductosInternet().isEmpty()) {
+            System.out.println("Planes de INTERNET:");
+            for (ProductoInternet productoInternet : cuentaNueva.getProductosInternet()) {
+                System.out.println(
+                        productoInternet.getPlan().getIdDelPlan() + " " + productoInternet.getPlan().getNombreDelPlan()
+                                + " $" + productoInternet.getPlan().getValorDelPLan());
+                System.out.println("Promocion: " + productoInternet.getPromocion().getNombrePromocion());
+                System.out.println("Valor con descuento: $" + productoInternet.getPlan().getValorDelPLan()
+                        * productoInternet.getPromocion().getPorcentajeDescuento() + "\n");
+            }
         }
-        System.out.println("Planes MOVIL:");
-        for (ProductoMovil productomovil : cuentaNueva.getProductosMovil()) {
-            System.out.println(productomovil.getPlan().getIdDelPlan() + " " + productomovil.getPlan().getNombreDelPlan()
-                    + " $" + productomovil.getPlan().getValorDelPLan());
-            System.out.println("Promocion: " + productomovil.getPromocion().getNombrePromocion());
-            System.out.println("Valor con descuento: $"
-                    + productomovil.getPlan().getValorDelPLan() * productomovil.getPromocion().getPorcentajeDescuento()
-                    + "\n");
+        if (!cuentaNueva.getProductosMovil().isEmpty()) {
+            System.out.println("Planes MOVIL:");
+            for (ProductoMovil productomovil : cuentaNueva.getProductosMovil()) {
+                System.out.println(
+                        productomovil.getPlan().getIdDelPlan() + " " + productomovil.getPlan().getNombreDelPlan() + " $"
+                                + productomovil.getPlan().getValorDelPLan());
+                System.out.println("Promocion: " + productomovil.getPromocion().getNombrePromocion());
+                System.out.println("Valor con descuento: $" + productomovil.getPlan().getValorDelPLan()
+                        * productomovil.getPromocion().getPorcentajeDescuento() + "\n");
+            }
         }
-        System.out.println("Planes TV POR CABLE:");
-        for (ProductoTv productoTv : cuentaNueva.getProductosTv()) {
-            System.out.println(productoTv.getPlan().getIdDelPlan() + " " + productoTv.getPlan().getNombreDelPlan()
-                    + " $" + productoTv.getPlan().getValorDelPLan());
-            System.out.println("Promocion: " + productoTv.getPromocion().getNombrePromocion());
-            System.out.println("Valor con descuento: $"
-                    + productoTv.getPlan().getValorDelPLan() * productoTv.getPromocion().getPorcentajeDescuento()
-                    + "\n");
+        if (!cuentaNueva.getProductosTv().isEmpty()) {
+            System.out.println("Planes TV POR CABLE:");
+            for (ProductoTv productoTv : cuentaNueva.getProductosTv()) {
+                System.out.println(productoTv.getPlan().getIdDelPlan() + " " + productoTv.getPlan().getNombreDelPlan()
+                        + " $" + productoTv.getPlan().getValorDelPLan());
+                System.out.println("Promocion: " + productoTv.getPromocion().getNombrePromocion());
+                System.out.println("Valor con descuento: $"
+                        + productoTv.getPlan().getValorDelPLan() * productoTv.getPromocion().getPorcentajeDescuento()
+                        + "\n");
+            }
         }
 
-    }// metodo
+    }
 
 }

@@ -7,7 +7,7 @@ import service.UsuarioService;
 public class App {
     public static void main(String[] args) {
         String nombreUsuario = "";
-        int claveUsuario = 0;
+        String claveUsuario = "";
         int elUsuarioEstaLogueado = 1;
         int cuentaIntentosDeLogueo = 0;
         Venta venta = new Venta();
@@ -22,14 +22,14 @@ public class App {
             System.out.println("Ingrese el nombre de Usuario:");
             nombreUsuario = scanner.next();
             System.out.println("Ingrese la clave:");
-            claveUsuario = scanner.nextInt();
+            claveUsuario = scanner.next();
 
             if (usuarioService.validaUsuario(nombreUsuario, claveUsuario)) {
                 System.out.println("Bienvenido " + nombreUsuario);
                 elUsuarioEstaLogueado = 0;
 
             } else {
-                System.out.println("Datos incorrectos\n");
+                System.out.println("Datos incorrectos");
                 cuentaIntentosDeLogueo = cuentaIntentosDeLogueo + 1;
                 if (cuentaIntentosDeLogueo > 2) {
                     System.out.println("Excedió el número de intentos, contacte a un administrador");
