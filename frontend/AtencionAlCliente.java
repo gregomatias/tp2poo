@@ -18,7 +18,7 @@ public class AtencionAlCliente {
         } else {
 
             Cliente cliente = clienteService.getClientes().stream().filter((c) -> c.getDni() == dni).findFirst().get();
-            System.out.println("Modulo de Atención al Cliente\n");
+            System.out.println("######Modulo de Atención al Cliente######");
             System.out.println("Cliente: " + cliente.getNombre() + " " + cliente.getApellido());
 
             for (Cuenta cuenta : cliente.getCuentas()) {
