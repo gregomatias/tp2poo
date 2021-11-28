@@ -1,4 +1,7 @@
 import java.util.Scanner;
+
+import dominio.Cliente;
+import dominio.Cuenta;
 import frontend.AtencionAlCliente;
 import frontend.Venta;
 import service.ClienteService;
@@ -36,7 +39,7 @@ public class App {
                 }
             }
 
-        } while (elUsuarioEstaLogueado != 0 && cuentaIntentosDeLogueo<3);
+        } while (elUsuarioEstaLogueado != 0 && cuentaIntentosDeLogueo < 3);
 
         while (elUsuarioEstaLogueado == 0) {
 

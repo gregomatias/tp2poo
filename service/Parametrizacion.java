@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
+import dominio.EventoTelevisivo;
 import dominio.Plan;
 import dominio.Promocion;
 
@@ -10,11 +11,13 @@ public class Parametrizacion {
 
     private List<Plan> planes;
     private List<Promocion> promociones;
+    private List<EventoTelevisivo> eventosTelevisivos;
 
     public Parametrizacion() {
 
         planes = new ArrayList<Plan>();
         promociones = new ArrayList<Promocion>();
+        eventosTelevisivos = new ArrayList<EventoTelevisivo>();
 
     }
 
@@ -42,6 +45,14 @@ public class Parametrizacion {
         promociones.add(new Promocion(7002, "Flow 2 meses 50% Desc", 0.50, 3));
 
     }
+    public void instanciaEventosTelevisisvos() {
+
+        eventosTelevisivos.add(new EventoTelevisivo(8001, "River vs Boca", "futbol"));
+        eventosTelevisivos.add(new EventoTelevisivo(8002, "Matrix", "Ciencia Ficcion"));
+        eventosTelevisivos.add(new EventoTelevisivo(8003, "El exorcista", "terror"));
+        eventosTelevisivos.add(new EventoTelevisivo(8004, "El bueno, el malo y el feo", "Cow Boys"));
+
+    }
 
     public List<Plan> getPlanes() {
         return planes;
@@ -49,6 +60,9 @@ public class Parametrizacion {
 
     public List<Promocion> getPromociones() {
         return promociones;
+    }
+    public List<EventoTelevisivo> getEventosTelevisivos() {
+        return eventosTelevisivos;
     }
 
 }

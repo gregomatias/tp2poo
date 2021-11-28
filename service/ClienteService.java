@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dominio.Cliente;
+import dominio.Cuenta;
 
 public class ClienteService {
 
@@ -30,6 +31,17 @@ public class ClienteService {
         for (Cliente cliente : clientes) {
             if (cliente.getDni() == dni) {
                 return cliente;
+
+            }
+        }
+
+        return null;
+    }
+
+    public Cuenta devuelveCuenta(Cliente cliente, String domicilio) {
+        for (Cuenta cuenta : cliente.getCuentas()) {
+            if (cuenta.getDomicilio().equals(domicilio)) {
+                return cuenta;
 
             }
         }

@@ -10,6 +10,7 @@ import service.ClienteService;
 public class AtencionAlCliente {
 
     public void atiendeCliente(ClienteService clienteService, int dni) {
+        VentaServiciosAdicionales  ventaServiciosAdicionales = new VentaServiciosAdicionales();
 
         // int dni = 26200854;
         if (clienteService.getClientes().stream().filter((c) -> c.getDni() == dni).findFirst().isEmpty()) {
@@ -50,11 +51,16 @@ public class AtencionAlCliente {
                             + productoTv.getPromocion().getNombrePromocion());
 
                 }
+
+            }
+            System.out.println("\n######Servicios Adicionales######");
+            System.out.println("1-Modulo Venta de servicios 2-Salir del cliente");
+            int servicio = Integer.parseInt(System.console().readLine(("Ingrese una opción: ")));
+            if (servicio == 1) {
+                ventaServiciosAdicionales.activaServiciosAdicionales(cliente);
             }
 
         }
-
-        // Aqui iria el dni de busqueda de cliente activo JOPTIONPANE
 
     }
 
