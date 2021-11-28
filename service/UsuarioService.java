@@ -19,13 +19,13 @@ public class UsuarioService {
     }
 
     public boolean validaUsuario(String nombreUsuario,int clave){
-        boolean validaUsuario=false;
+       
         for (Usuario usuario : usuarios) {
             if (usuario.getNombreUsuario().equals(nombreUsuario)&&usuario.getClave()==clave) {
-                validaUsuario= true;
+                return true;
             }
         }
-        return validaUsuario;
+        return false;
 
     }
 

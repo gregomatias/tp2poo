@@ -5,7 +5,6 @@ import java.util.List;
 
 import dominio.Cliente;
 
-
 public class ClienteService {
 
     private List<Cliente> clientes = new ArrayList<Cliente>();
@@ -14,22 +13,28 @@ public class ClienteService {
         clientes.add(clienteNuevo);
     }
 
-public List<Cliente> getClientes() {
-    return clientes;
-}
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
 
-        
-        public int creaIdLinea() {
-            int max = 1123226456;
+    public int creaIdLinea() {
+        int max = 1123226456;
 
-           int nuevaLinea= max + clientes.size();
-           
-            return nuevaLinea;
-    
+        int nuevaLinea = max + clientes.size();
+
+        return nuevaLinea;
+
+    }
+
+    public Cliente devuelveCliente(int dni) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getDni() == dni) {
+                return cliente;
+
+            }
         }
 
-
-
-
+        return null;
+    }
 
 }
