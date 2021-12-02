@@ -133,7 +133,7 @@ public class Venta {
 
         } while (finDelCarro == 0);
 
-        System.out.println("\nFin del Carro. Productos comprados:\n");
+        System.out.println("\n##########Fin del Carro. Productos comprados:##########\n");
 
         if (!cuentaNueva.getProductosInternet().isEmpty()) {
             System.out.println("Planes de INTERNET:");

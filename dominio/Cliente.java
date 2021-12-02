@@ -1,20 +1,17 @@
 package dominio;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cliente {
 
     private int dni;
     private String nombre;
     private String apellido;
-    private List<Cuenta> cuentas = new ArrayList<Cuenta>();
+    private Cuenta cuenta;
 
     public Cliente(int dni, String nombre, String apellido, Cuenta cuenta) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
-        cuentas.add(cuenta);
+        this.cuenta = cuenta;
 
     }
 
@@ -30,10 +27,8 @@ public class Cliente {
         return apellido;
     }
 
-
-
-    public List<Cuenta> getCuentas() {
-        return cuentas;
+    public Cuenta getCuenta() {
+        return cuenta;
     }
 
 }

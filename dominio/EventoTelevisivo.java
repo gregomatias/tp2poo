@@ -11,13 +11,13 @@ public class EventoTelevisivo {
         this.generoEvento = generoEvento;
 
     }
-    public int getIdPelicula() {
+    public int getIdEvento() {
         return idEvento;
     }
-    public String getNombrePelicula() {
+    public String getNombreEvento() {
         return nombreEvento;
     }
-    public String getGeneroPelicula() {
+    public String getGeneroEvento() {
         return generoEvento;
     }
 }

@@ -1,7 +1,4 @@
 import java.util.Scanner;
-
-import dominio.Cliente;
-import dominio.Cuenta;
 import frontend.AtencionAlCliente;
 import frontend.Venta;
 import service.ClienteService;
@@ -52,10 +49,10 @@ public class App {
             } else {
                 atencionaAlCliente.atiendeCliente(clienteService, dni);
             }
-            System.out.println("Desea desloguear? Sí:1 No:0");
+            System.out.println("Desea desloguear? Sí:1 No:0 (Cliente Activo)");
             elUsuarioEstaLogueado = scanner.nextInt();
 
         }
-
+        scanner.close();
     }
 }
