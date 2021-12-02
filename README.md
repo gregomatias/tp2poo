@@ -11,7 +11,7 @@ Sobre cada uno de estos productos ofrecemos una variada oferta de planes con dis
 <p>Dada la celeridad con que necesitan el desarrollo y la velocidad que requiere el sistema. Se decide prescindir de una interfaze visual optando por un CRM manejado por consola: </p>
 <p>El lenguaje de programación utilizado será Java</p>
 <h2>Flujo</h2>
-<h3>Cliente multicuenta multiproducto</h3>
+<h3>Cliente Una cuenta multiproducto</h3>
 <p>1)Inicio Valido Usuario 3 intentos </p>
 <p>2)Muestro opciones de Cliente Nuevo o Cliente Existente </p>
 <p>3)Cliente nuevo: cargo datos del cliente y cuenta, luego Paso a mostrar el carro: Vendo planes con dos variantes de promociones seún familia de productos 1-Internet 2 Movil 3 Tv. Luego muestro el resultado del carrito con los totales incluyendo la promoción.</p>
